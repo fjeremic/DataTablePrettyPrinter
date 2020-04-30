@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+        <Authors>Filip Jeremic</Authors>
+    <Company />
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>An extension library of System.Data.DataTable which provides extension methods for fully customizable pretty-printing of DataTable to an ASCII formatted string which can be displayed on the console or any text buffer.</Description>
+    <PackageProjectUrl>https://github.com/fjeremic/DataTablePrettyPrinter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fjeremic/DataTablePrettyPrinter</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>DataTable;Print;PrettyPrint;Pretty-Print;Console;SQL</PackageTags>
+    <Version>0.1.0</Version>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
