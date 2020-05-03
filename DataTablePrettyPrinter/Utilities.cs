@@ -1,7 +1,7 @@
 ﻿namespace DataTablePrettyPrinter
 {
     /// <summary>
-    /// A utility class with miscellaneous methos.
+    /// A utility class with miscellaneous methods.
     /// </summary>
     internal static class Utilities
     {
