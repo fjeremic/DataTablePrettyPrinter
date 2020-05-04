@@ -1,5 +1,7 @@
 ﻿namespace DataTablePrettyPrinter
 {
+    using System.Data;
+
     /// <summary>
     /// Enumerates the alignment of the text represented by a <see cref="DataTable"/> which is to be pretty printing to
     /// a string.

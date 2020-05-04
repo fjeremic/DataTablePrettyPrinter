@@ -1,8 +1,8 @@
-﻿using System;
-using Xunit;
-
-namespace DataTablePrettyPrinter.Tests
+﻿namespace DataTablePrettyPrinter.Tests
 {
+    using System;
+    using Xunit;
+
     public class TestDataColumnExtensions
     {
         [Fact]
@@ -11,7 +11,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTable();
 
             Assert.Equal(Border.All, table.Columns[0].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -28,7 +29,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetDataBorder(Border.Left);
             Assert.Equal(Border.Left, table.Columns[0].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -47,7 +49,8 @@ namespace DataTablePrettyPrinter.Tests
             table.Columns[1].SetDataBorder(Border.Right);
             Assert.Equal(Border.Left, table.Columns[0].GetDataBorder());
             Assert.Equal(Border.Right, table.Columns[1].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -67,7 +70,8 @@ namespace DataTablePrettyPrinter.Tests
             table.Columns[1].SetDataBorder(Border.Right);
             Assert.Equal(Border.Left | Border.Bottom, table.Columns[0].GetDataBorder());
             Assert.Equal(Border.Right, table.Columns[1].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                                         Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -89,7 +93,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTableWithoutBorders();
 
             Assert.Equal(Border.None, table.Columns[0].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
 
                                         Prescriptions
                 
@@ -106,7 +111,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetDataBorder(Border.All);
             Assert.Equal(Border.All, table.Columns[0].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
 
                                         Prescriptions
                 
@@ -125,7 +131,8 @@ namespace DataTablePrettyPrinter.Tests
             table.Columns[1].SetDataBorder(Border.Right | Border.Bottom);
             Assert.Equal(Border.Left, table.Columns[0].GetDataBorder());
             Assert.Equal(Border.Right | Border.Bottom, table.Columns[1].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
 
                                         Prescriptions
                 
@@ -149,7 +156,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(Border.Top, table.Columns[1].GetDataBorder());
             Assert.Equal(Border.Top, table.Columns[2].GetDataBorder());
             Assert.Equal(Border.Top, table.Columns[3].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 |                                                           |
@@ -173,7 +181,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(Border.Top, table.Columns[1].GetDataBorder());
             Assert.Equal(Border.Top, table.Columns[2].GetDataBorder());
             Assert.Equal(Border.Top | Border.Bottom, table.Columns[3].GetDataBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 |                                                           |
@@ -195,7 +204,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTable();
 
             Assert.Equal(TextAlignment.Left, table.Columns[0].GetDataAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -212,7 +222,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetDataAlignment(TextAlignment.Center);
             Assert.Equal(TextAlignment.Center, table.Columns[0].GetDataAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -229,7 +240,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetDataAlignment(TextAlignment.Right);
             Assert.Equal(TextAlignment.Right, table.Columns[0].GetDataAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -252,7 +264,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(TextAlignment.Center, table.Columns[1].GetDataAlignment());
             Assert.Equal(TextAlignment.Right, table.Columns[2].GetDataAlignment());
             Assert.Equal(TextAlignment.Center, table.Columns[3].GetDataAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -274,7 +287,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTable();
 
             table.Columns[0].SetDataTextFormat((c, r) => "5");
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -290,7 +304,8 @@ namespace DataTablePrettyPrinter.Tests
                 .TrimLeadingWhitespace(), table.ToPrettyPrintedString().TrimLeadingWhitespace());
 
             table.Columns[0].SetDataTextFormat((c, r) => "1234567890");
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +---------------------------------------------------------------+
                 |                         Prescriptions                         |
                 +------------+-------------+-----------+------------------------+
@@ -307,7 +322,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetDataTextFormat((c, r) => "1234567890");
             table.Columns[1].SetDataTextFormat((c, r) => r[c].ToString().Length.ToString());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +--------------------------------------------------------+
                 |                     Prescriptions                      |
                 +------------+------+-----------+------------------------+
@@ -322,7 +338,7 @@ namespace DataTablePrettyPrinter.Tests
 
                 .TrimLeadingWhitespace(), table.ToPrettyPrintedString().TrimLeadingWhitespace());
 
-            table.Columns[0].SetDataTextFormat((c, r) => String.Format("0x{0:X4}", r[c]));
+            table.Columns[0].SetDataTextFormat((c, r) => string.Format("0x{0:X4}", r[c]));
             table.Columns[1].SetDataTextFormat((c, r) => r[c].ToString().Length.ToString());
             table.Columns[2].SetDataTextFormat((c, r) =>
             {
@@ -335,7 +351,8 @@ namespace DataTablePrettyPrinter.Tests
                     return r[c].ToString();
                 }
             });
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +----------------------------------------------------------+
                 |                      Prescriptions                       |
                 +--------+------+-----------------+------------------------+
@@ -356,9 +373,10 @@ namespace DataTablePrettyPrinter.Tests
         {
             var table = TestUtilities.CreateTypicalTable();
 
-            table.Columns.Add("Index", typeof(Int32)).SetOrdinal(0);
+            table.Columns.Add("Index", typeof(int)).SetOrdinal(0);
             table.Columns[0].SetDataTextFormat((c, r) => table.Rows.IndexOf(r).ToString());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-------------------------------------------------------------------+
                 |                           Prescriptions                           |
                 +-------+--------+-------------+-----------+------------------------+
@@ -380,7 +398,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTable();
 
             Assert.Equal(Border.All, table.Columns[0].GetHeaderBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -397,7 +416,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetHeaderBorder(Border.Bottom);
             Assert.Equal(Border.Bottom, table.Columns[0].GetHeaderBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 |        +-------------+-----------+------------------------+
@@ -420,7 +440,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(Border.Top, table.Columns[1].GetHeaderBorder());
             Assert.Equal(Border.Left | Border.Bottom, table.Columns[2].GetHeaderBorder());
             Assert.Equal(Border.Right, table.Columns[3].GetHeaderBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 |        +-------------+                                    +
@@ -442,7 +463,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTableWithoutBorders();
 
             Assert.Equal(Border.None, table.Columns[0].GetHeaderBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
 
                                         Prescriptions
                 
@@ -459,7 +481,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetHeaderBorder(Border.Bottom);
             Assert.Equal(Border.Bottom, table.Columns[0].GetHeaderBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
 
                                         Prescriptions
                 
@@ -482,7 +505,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(Border.Top, table.Columns[1].GetHeaderBorder());
             Assert.Equal(Border.Left | Border.Bottom, table.Columns[2].GetHeaderBorder());
             Assert.Equal(Border.Left | Border.Top | Border.Right, table.Columns[3].GetHeaderBorder());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
 
                                         Prescriptions
                          +-------------+           +------------------------+
@@ -504,7 +528,8 @@ namespace DataTablePrettyPrinter.Tests
             var table = TestUtilities.CreateTypicalTable();
 
             Assert.Equal(TextAlignment.Center, table.Columns[1].GetColumnNameAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -521,7 +546,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[1].SetColumnNameAlignment(TextAlignment.Left);
             Assert.Equal(TextAlignment.Left, table.Columns[1].GetColumnNameAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -538,7 +564,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[1].SetColumnNameAlignment(TextAlignment.Right);
             Assert.Equal(TextAlignment.Right, table.Columns[1].GetColumnNameAlignment());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------------+
                 |                       Prescriptions                       |
                 +--------+-------------+-----------+------------------------+
@@ -563,7 +590,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetShowColumnName(false);
             Assert.False(table.Columns[0].GetShowColumnName());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +--------------------------------------------------------+
                 |                     Prescriptions                      |
                 +-----+-------------+-----------+------------------------+
@@ -582,7 +610,8 @@ namespace DataTablePrettyPrinter.Tests
             table.Columns[2].SetShowColumnName(false);
             Assert.False(table.Columns[0].GetShowColumnName());
             Assert.False(table.Columns[2].GetShowColumnName());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +--------------------------------------------------------+
                 |                     Prescriptions                      |
                 +-----+-------------+-----------+------------------------+
@@ -607,7 +636,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetWidth(15);
             Assert.Equal(15, table.Columns[0].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +------------------------------------------------------------------+
                 |                          Prescriptions                           |
                 +---------------+-------------+-----------+------------------------+
@@ -624,7 +654,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetWidth(2);
             Assert.Equal(2, table.Columns[0].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------------------------------------+
                 |                    Prescriptions                    |
                 +--+-------------+-----------+------------------------+
@@ -641,7 +672,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetWidth(4);
             Assert.Equal(4, table.Columns[0].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-------------------------------------------------------+
                 |                     Prescriptions                     |
                 +----+-------------+-----------+------------------------+
@@ -658,7 +690,8 @@ namespace DataTablePrettyPrinter.Tests
 
             table.Columns[0].SetWidth(5);
             Assert.Equal(5, table.Columns[0].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +--------------------------------------------------------+
                 |                     Prescriptions                      |
                 +-----+-------------+-----------+------------------------+
@@ -681,7 +714,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(5, table.Columns[1].GetWidth());
             Assert.Equal(5, table.Columns[2].GetWidth());
             Assert.Equal(5, table.Columns[3].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------------------+
                 |     Prescriptions     |
                 +-----+-----+-----+-----+
@@ -704,7 +738,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(2, table.Columns[1].GetWidth());
             Assert.Equal(2, table.Columns[2].GetWidth());
             Assert.Equal(2, table.Columns[3].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-----------+
                 | Prescri.. |
                 +--+--+--+--+
@@ -727,7 +762,8 @@ namespace DataTablePrettyPrinter.Tests
             Assert.Equal(1, table.Columns[1].GetWidth());
             Assert.Equal(1, table.Columns[2].GetWidth());
             Assert.Equal(1, table.Columns[3].GetWidth());
-            Assert.Equal(@"
+            Assert.Equal(
+                @"
                 +-------+
                 | Pre.. |
                 +-+-+-+-+

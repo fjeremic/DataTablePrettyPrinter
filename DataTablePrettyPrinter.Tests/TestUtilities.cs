@@ -1,21 +1,21 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using System.Text;
-
-namespace DataTablePrettyPrinter.Tests
+﻿namespace DataTablePrettyPrinter.Tests
 {
+    using System;
+    using System.Data;
+    using System.Linq;
+    using System.Text;
+
     internal static class TestUtilities
     {
-        internal static String TrimLeadingWhitespace(this String value)
+        internal static string TrimLeadingWhitespace(this string value)
         {
             var sb = new StringBuilder();
 
-            foreach (String line in value.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            foreach (string line in value.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
             {
-                String trimmed = line.Trim();
+                string trimmed = line.Trim();
 
-                if (!String.IsNullOrWhiteSpace(trimmed))
+                if (!string.IsNullOrWhiteSpace(trimmed))
                 {
                     sb.AppendLine(trimmed);
                 }
@@ -28,10 +28,10 @@ namespace DataTablePrettyPrinter.Tests
         {
             DataTable table = new DataTable("Prescriptions");
 
-            table.Columns.Add("Dosage", typeof(Int32));
-            table.Columns.Add("Drug", typeof(String));
-            table.Columns.Add("Patient", typeof(String));
-            table.Columns.Add("Date", typeof(String));
+            table.Columns.Add("Dosage", typeof(int));
+            table.Columns.Add("Drug", typeof(string));
+            table.Columns.Add("Patient", typeof(string));
+            table.Columns.Add("Date", typeof(string));
 
             table.Rows.Add(25, "Indocin", "David", "0001-01-01 12:00:12 AM");
             table.Rows.Add(50, "Enebrel", "Sam", "0001-01-01 12:00:12 AM");
@@ -58,17 +58,17 @@ namespace DataTablePrettyPrinter.Tests
         {
             DataTable table = new DataTable();
 
-            table.Columns.Add("A", typeof(String));
+            table.Columns.Add("A", typeof(string));
 
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
-            table.Rows.Add("");
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
+            table.Rows.Add(string.Empty);
 
             return table;
         }

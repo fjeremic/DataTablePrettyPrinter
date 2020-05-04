@@ -1,9 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-
-namespace DataTablePrettyPrinter
+﻿namespace DataTablePrettyPrinter
 {
+    using System;
+    using System.Data;
+    using System.Linq;
+
     /// <summary>
     /// An extension class providing <see cref="DataColumn"/> utility methods for pretty printing to a string.
     /// </summary>
@@ -12,11 +12,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the border around the data area of the column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The border around the data area of the column.
         /// </returns>
@@ -28,11 +28,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the border around the data area of the column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
@@ -44,11 +44,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the text alignment of the data in this column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// Gets the data alignment.
         /// </returns>
@@ -60,11 +60,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the text alignment of the data in this column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
@@ -77,32 +77,32 @@ namespace DataTablePrettyPrinter
         /// Gets the formatting method which given a column and row formats the data of the cell into a string. This
         /// API can be used for arbitrary formatting of induvidual data cells.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The method which formats the data cell.
         /// </returns>
-        public static Func<DataColumn, DataRow, String> GetDataTextFormat(this DataColumn column)
+        public static Func<DataColumn, DataRow, string> GetDataTextFormat(this DataColumn column)
         {
-            return column.GetExtendedProperty<Func<DataColumn, DataRow, String>>("DataTextFormat", (c, r) => String.Format("{0}", r[c]));
+            return column.GetExtendedProperty<Func<DataColumn, DataRow, string>>("DataTextFormat", (c, r) => string.Format("{0}", r[c]));
         }
 
         /// <summary>
         /// Sets the formatting method which given a column and row formats the data of the cell into a string. This
         /// API can be used for arbitrary formatting of induvidual data cells.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The method used to format the data cell which will be called during pretty printing of the table.
         /// </param>
-        public static void SetDataTextFormat(this DataColumn column, Func<DataColumn, DataRow, String> value)
+        public static void SetDataTextFormat(this DataColumn column, Func<DataColumn, DataRow, string> value)
         {
             column.SetExtendedProperty("DataTextFormat", value);
         }
@@ -110,11 +110,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the border around the column header area which displays the column names.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The border around the column header area.
         /// </returns>
@@ -126,11 +126,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the border around the column header area which displays the column names.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
@@ -142,11 +142,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the <see cref="DataColumn.ColumnName"/> text alignment.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// Gets the column name text alignment.
         /// </returns>
@@ -158,11 +158,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the <see cref="DataColumn.ColumnName"/> text alignment.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
@@ -174,15 +174,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets whether to show the <see cref="DataTable.TableName"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// <c>true</c> if the column name is to be shown; <c>false</c> otherwise.
         /// </returns>
-        public static Boolean GetShowColumnName(this DataColumn column)
+        public static bool GetShowColumnName(this DataColumn column)
         {
             return column.GetExtendedProperty("ShowColumnName", true);
         }
@@ -190,15 +190,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets whether to show the <see cref="DataTable.TableName"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
-        public static void SetShowColumnName(this DataColumn column, Boolean value)
+        public static void SetShowColumnName(this DataColumn column, bool value)
         {
             column.SetExtendedProperty("ShowColumnName", value);
         }
@@ -206,20 +206,20 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the width (in characters) of this column as it would appear on the pretty printed table.
         /// </summary>
-        /// 
-        /// <param name="row">
+        ///
+        /// <param name="column">
         /// The input column.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The width (in characters) of this column which is retrieved either by user defined value or the aggregate
         /// maximum width of any row in the table.
         /// </returns>
-        public static Int32 GetWidth(this DataColumn column)
+        public static int GetWidth(this DataColumn column)
         {
             if (column.ExtendedProperties.ContainsKey("Width"))
             {
-                return (Int32)column.ExtendedProperties["Width"];
+                return (int)column.ExtendedProperties["Width"];
             }
             else
             {
@@ -245,15 +245,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the width (in characters) of this column as it would appear on the pretty printed table.
         /// </summary>
-        /// 
-        /// <param name="row">
+        ///
+        /// <param name="column">
         /// The input column.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set which will be clamped to be at least 1.
         /// </param>
-        public static void SetWidth(this DataColumn column, Int32 value)
+        public static void SetWidth(this DataColumn column, int value)
         {
             value = Math.Max(1, value);
 
@@ -263,34 +263,33 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the beginning X coordinate of the data area of this column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The input column.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The X coordinate of the beginning of the data area.
         /// </returns>
-        internal static Int32 GetDataX1(this DataColumn column)
+        internal static int GetDataX1(this DataColumn column)
         {
             var columnIndex = column.Table.Columns.IndexOf(column);
 
             return column.Table.Columns.Cast<DataColumn>().Take(columnIndex).Aggregate(0, (a, c) => a + c.GetWidth() + 1);
         }
 
-
         /// <summary>
         /// Gets the end X coordinate of the data area of this column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The input column.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The X coordinate of the end of the data area.
         /// </returns>
-        internal static Int32 GetDataX2(this DataColumn column)
+        internal static int GetDataX2(this DataColumn column)
         {
             return column.GetDataX1() + 1 + column.GetWidth();
         }
@@ -298,15 +297,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the beginning Y coordinate of the data area of this column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The input column.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The Y coordinate of the beginning of the data area.
         /// </returns>
-        internal static Int32 GetDataY1(this DataColumn column)
+        internal static int GetDataY1(this DataColumn column)
         {
             // Account for the top border
             var y1 = 1;
@@ -329,15 +328,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the end Y coordinate of the data area of this column.
         /// </summary>
-        /// 
+        ///
         /// <param name="column">
         /// The input column.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The Y coordinate of the end of the data area.
         /// </returns>
-        internal static Int32 GetDataY2(this DataColumn column)
+        internal static int GetDataY2(this DataColumn column)
         {
             return column.GetDataY1() + column.Table.Rows.Cast<DataRow>().Aggregate(0, (a, r) => a + r.GetHeight());
         }
@@ -345,27 +344,27 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets an extended property from the <see cref="DataColumn"/> with a default value if it does not exist.
         /// </summary>
-        /// 
+        ///
         /// <typeparam name="T">
         /// The type of the value to get.
         /// </typeparam>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="property">
         /// The extended property to get.
         /// </param>
-        /// 
+        ///
         /// <param name="defaultValue">
         /// The default value to return if the extended property does not exist.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value of the extended property if it exists; <paramref name="defaultValue"/> otherwise.
         /// </returns>
-        internal static T GetExtendedProperty<T>(this DataColumn column, String property, T defaultValue = default(T))
+        internal static T GetExtendedProperty<T>(this DataColumn column, string property, T defaultValue = default)
         {
             if (column.ExtendedProperties[property] is T)
             {
@@ -380,23 +379,23 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets an extended property from the <see cref="DataColumn"/>.
         /// </summary>
-        /// 
+        ///
         /// <typeparam name="T">
         /// The type of the value to get.
         /// </typeparam>
-        /// 
+        ///
         /// <param name="column">
         /// The column to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="property">
         /// The extended property to set.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
-        internal static void SetExtendedProperty<T>(this DataColumn column, String property, T value)
+        internal static void SetExtendedProperty<T>(this DataColumn column, string property, T value)
         {
             column.ExtendedProperties[property] = value;
         }

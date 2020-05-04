@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace DataTablePrettyPrinter
+﻿namespace DataTablePrettyPrinter
 {
+    using System;
+    using System.Data;
+
     /// <summary>
     /// Enumerates the border flags of the text represented by a <see cref="DataTable"/> which is to be drawn on a
     /// pretty printed string.
@@ -37,6 +38,6 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// All borders.
         /// </summary>
-        All = 15
+        All = 15,
     }
 }

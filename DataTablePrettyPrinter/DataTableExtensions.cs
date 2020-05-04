@@ -1,9 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-
-namespace DataTablePrettyPrinter
+﻿namespace DataTablePrettyPrinter
 {
+    using System;
+    using System.Data;
+    using System.Linq;
+
     /// <summary>
     /// An extension class providing <see cref="DataTable"/> utility methods for pretty printing to a string.
     /// </summary>
@@ -12,11 +12,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the border around the entire table.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The border around the entire table.
         /// </returns>
@@ -28,11 +28,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the border around the entire table.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
@@ -44,15 +44,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets whether to show the column header section which shows the column names.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// <c>true</c> if the column header is to be shown; <c>false</c> otherwise.
         /// </returns>
-        public static Boolean GetShowColumnHeader(this DataTable table)
+        public static bool GetShowColumnHeader(this DataTable table)
         {
             return table.GetExtendedProperty("ShowColumnHeader", true);
         }
@@ -60,15 +60,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets whether to show the column header section which shows the column names.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
-        public static void SetShowColumnHeader(this DataTable table, Boolean value)
+        public static void SetShowColumnHeader(this DataTable table, bool value)
         {
             table.SetExtendedProperty("ShowColumnHeader", value);
         }
@@ -76,15 +76,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets whether to show the <see cref="DataTable.TableName"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// <c>true</c> if the table title is to be shown; <c>false</c> otherwise.
         /// </returns>
-        public static Boolean GetShowTableName(this DataTable table)
+        public static bool GetShowTableName(this DataTable table)
         {
             return table.GetExtendedProperty("ShowTableName", true);
         }
@@ -92,15 +92,15 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets whether to show the <see cref="DataTable.TableName"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
-        public static void SetShowTableName(this DataTable table, Boolean value)
+        public static void SetShowTableName(this DataTable table, bool value)
         {
             table.SetExtendedProperty("ShowTableName", value);
         }
@@ -108,11 +108,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Gets the text alignment of the title determined by the <see cref="DataTable.TableName"/> property.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// Gets the title text alignment.
         /// </returns>
@@ -124,11 +124,11 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets the text alignment of the title determined by the <see cref="DataTable.TableName"/> property.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
@@ -140,21 +140,21 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Converts the <see cref="DataTable"/> into pretty printed string which can be displayed on the console.
         /// </summary>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
-        /// <param name="value">
+        ///
+        /// <returns>
         /// The pretty printed table.
-        /// </param>
-        public static String ToPrettyPrintedString(this DataTable table)
+        /// </returns>
+        public static string ToPrettyPrintedString(this DataTable table)
         {
-            Int32 x2 = table.Columns.Cast<DataColumn>().Last().GetDataX2();
-            Int32 y2 = table.Columns.Cast<DataColumn>().Last().GetDataY2();
+            int x2 = table.Columns.Cast<DataColumn>().Last().GetDataX2();
+            int y2 = table.Columns.Cast<DataColumn>().Last().GetDataY2();
 
-            Char[] newLineChars = Environment.NewLine.ToCharArray();
-            Char[,] canvas = new Char[y2 + 1, x2 + 1 + newLineChars.Length];
+            char[] newLineChars = Environment.NewLine.ToCharArray();
+            char[,] canvas = new char[y2 + 1, x2 + 1 + newLineChars.Length];
 
             // Fill the table with spaces and new lines at the end of each row
             for (var y = 0; y < y2 + 1; ++y)
@@ -174,8 +174,8 @@ namespace DataTablePrettyPrinter
             canvas.DrawBorder(0, 0, x2, y2, table.GetBorder());
 
             // Keep track of the x and y coordinates we are drawing on
-            Int32 x1 = 0;
-            Int32 y1 = 0;
+            int x1 = 0;
+            int y1 = 0;
 
             if (table.GetShowTableName())
             {
@@ -240,36 +240,36 @@ namespace DataTablePrettyPrinter
                 ++y1;
             }
 
-            var buffer = new Char[canvas.GetLength(0) * canvas.GetLength(1)];
-            Buffer.BlockCopy(canvas, 0, buffer, 0, buffer.Length * sizeof(Char));
+            var buffer = new char[canvas.GetLength(0) * canvas.GetLength(1)];
+            Buffer.BlockCopy(canvas, 0, buffer, 0, buffer.Length * sizeof(char));
 
-            return new String(buffer);
+            return new string(buffer);
         }
 
         /// <summary>
         /// Gets an extended property from the <see cref="DataTable"/> with a default value if it does not exist.
         /// </summary>
-        /// 
+        ///
         /// <typeparam name="T">
         /// The type of the value to get.
         /// </typeparam>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="property">
         /// The extended property to get.
         /// </param>
-        /// 
+        ///
         /// <param name="defaultValue">
         /// The default value to return if the extended property does not exist.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value of the extended property if it exists; <paramref name="defaultValue"/> otherwise.
         /// </returns>
-        internal static T GetExtendedProperty<T>(this DataTable table, String property, T defaultValue = default(T))
+        internal static T GetExtendedProperty<T>(this DataTable table, string property, T defaultValue = default)
         {
             if (table.ExtendedProperties[property] is T)
             {
@@ -284,23 +284,23 @@ namespace DataTablePrettyPrinter
         /// <summary>
         /// Sets an extended property from the <see cref="DataTable"/>.
         /// </summary>
-        /// 
+        ///
         /// <typeparam name="T">
         /// The type of the value to get.
         /// </typeparam>
-        /// 
+        ///
         /// <param name="table">
         /// The table to pretty print.
         /// </param>
-        /// 
+        ///
         /// <param name="property">
         /// The extended property to set.
         /// </param>
-        /// 
+        ///
         /// <param name="value">
         /// The value to set.
         /// </param>
-        internal static void SetExtendedProperty<T>(this DataTable table, String property, T value)
+        internal static void SetExtendedProperty<T>(this DataTable table, string property, T value)
         {
             table.ExtendedProperties[property] = value;
         }
