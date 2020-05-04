@@ -11,7 +11,11 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>DataTable;Print;PrettyPrint;Pretty-Print;Console;SQL</PackageTags>
     <Version>0.1.0</Version>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Release notes:
+      https://github.com/fjeremic/DataTablePrettyPrinter/releases
+    </PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
